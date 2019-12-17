@@ -31,3 +31,75 @@
     font-weight: bold;
     color: #7BCB81;
 }
+
+.addition {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 10px 10px 10px
+}
+
+
+.addition .add-cellar {
+    padding: 8px;
+    border: none;
+    background: #bbedb8;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px #cec8cb;
+    color: white;
+    outline: none;
+}
+
+.cellar-addition-box {
+    position: absolute;
+    left: 200%;
+    top: 50%;
+    width: 260px;
+    background: #91d18e;
+    border: none;
+    box-shadow: 0px 3px 6px #cec8cb;
+    z-index: 100;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addition-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5px;
+}
+
+.cellar-addition-box label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    margin: 2px;
+}
+
+.cellar-addition-box input {
+    font-size: 12px;
+    margin: 2px;
+    border: none;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.open-addition-box {
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    font-size: 11px;
+    background: #fff;
+    padding: 2px;
+    margin: 2.5px;
+}

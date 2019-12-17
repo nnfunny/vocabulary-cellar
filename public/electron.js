@@ -5,6 +5,14 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const isDev = require("electron-is-dev");
 
+// Reload Electron App
+// if(isDev) {
+    // require("electron-reload")(__dirname, {
+        // electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+        // hardResetMethod: 'exit',
+    // });
+// }
+
 let mainWindow;
 
 // Update app from Github repository

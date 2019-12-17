@@ -6,5 +6,5 @@ expand vocabulary
 #### All following frameworks/technologies are implemented in this project:
 - Front-end: React (Basic)
 - Desktop Framework: Electron.js (Node.js)
-- Database: SQLite
+- Data Storage: JSON (assisted by "electron-store" - npm package)
 - Cross-platform app: Windows, MacOS, Linux
