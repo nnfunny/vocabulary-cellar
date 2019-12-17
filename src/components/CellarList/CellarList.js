@@ -2,6 +2,7 @@ import React from 'react';
 import './CellarList.css';
 import { dataSetKV } from '../../data/dataSet.js';
 import dataGet from '../../data/dataGet.js';
+import dataDelete from '../../data/dataDelete.js';
 
 class CellarList extends React.Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class CellarList extends React.Component {
         this.addCellar = this.addCellar.bind(this);
         this.getName = this.getName.bind(this);
         this.toggleBox = this.toggleBox.bind(this);
+        this.deleteCellar = this.deleteCellar.bind(this);
     }
     
     componentDidMount() {
@@ -43,6 +45,26 @@ class CellarList extends React.Component {
         this.setState({boxAddition: false})
     }
 
+    deleteCellar() {
+        let cellarList = dataGet("Cellars");
+        let nameInput = document.getElementById("input-name");
+        // Delete Cellar
+        dataDelete(this.state.cellarName);
+        
+        // Delete Cellar in Cellars List
+        let indexOfCellar = cellarList.indexOf(this.state.cellarName);
+        if(indexOfCellar > -1) {
+            cellarList.splice(indexOfCellar,1);
+            dataSetKV("Cellars", cellarList);
+            this.setState({ cellars: dataGet("Cellars") })
+            nameInput.value = "";
+        } else {
+            let nameInput = document.getElementById("input-name");
+            nameInput.value = "";
+            nameInput.placeholder = "Enter correct name, please!!!";
+        }
+    }
+
     getName(e) { 
         this.setState({ cellarName: e.target.value })
     }
@@ -66,12 +88,19 @@ class CellarList extends React.Component {
                                id="input-name"
                         />
                     </div>
-                    <button className="open-addition-box" onClick={this.addCellar}>Add</button>
+                    <div>
+                        <button className="open-addition-box" onClick={this.addCellar}>Add</button>
+                        <button className="open-addition-box" onClick={this.deleteCellar}>Delete</button>
+                        <button className="open-addition-box" onClick={this.toggleBox}>Close</button>
+
+                    </div>
                 </div> : <div></div>
 
             }
                 <div className="addition">
                     <button className="add-cellar" onClick={this.toggleBox} >Add Cellar</button>
+                    <button className="add-cellar" onClick={this.toggleBox} >Delete Cellar</button>
+
                 </div>
                 {
                     this.state.cellars === [] ?

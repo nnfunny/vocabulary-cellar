@@ -53,6 +53,8 @@
     box-shadow: 0px 2px 2px #cec8cb;
     color: white;
     outline: none;
+    font-size: 12px;
+    margin: 0 2px;
 }
 
 .cellar-addition-box {
