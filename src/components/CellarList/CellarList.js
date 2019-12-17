@@ -78,7 +78,7 @@ class CellarList extends React.Component {
                         <div></div>    
                         : 
                         this.state.cellars.map((cellar, index) => (
-                        <div className="cellar-item">
+                        <div key={index} value={cellar} className="cellar-item">
                             <span>
                                 {cellar}
                             </span>
