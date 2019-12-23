@@ -6,7 +6,7 @@ class VocabularyHeader extends React.Component {
         return (
             <div className="vocabulary-header">
                 <div className="inner-header">
-                    Cellar 1 
+                    {this.props.dataFromCellar} 
                 </div>  
             </div>
         )

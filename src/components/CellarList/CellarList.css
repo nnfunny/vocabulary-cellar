@@ -19,6 +19,9 @@
     border: 1px solid #B5E2B4;
     border-radius: 5px;
     box-shadow: 0px 3px 6px #cec8cb;
+    background: none;
+    outline: none;
+    width: 100%;
     
     display: flex;
     justify-content: center;
@@ -61,12 +64,13 @@
     position: absolute;
     left: 200%;
     top: 50%;
-    width: 260px;
+    width: 300px;
+    height: 100px;
     background: #91d18e;
     border: none;
     box-shadow: 0px 3px 6px #cec8cb;
     z-index: 100;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
 
     display: flex;
@@ -94,6 +98,7 @@
     margin: 2px;
     border: none;
     padding: 2px;
+    width: 180px;
     border-radius: 5px;
 }
 
@@ -101,7 +106,8 @@
     outline: none;
     border-radius: 5px;
     border: none;
-    font-size: 11px;
+    font-weight: 600;
+    font-size: 11.5px;
     background: #fff;
     padding: 2px;
     margin: 2.5px;

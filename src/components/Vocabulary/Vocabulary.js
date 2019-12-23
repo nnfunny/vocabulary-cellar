@@ -7,8 +7,8 @@ class Vocabulary extends React.Component {
     render() {
         return (
             <div className="vocabulary-container">
-                <VocabularyHeader/>
-                <MainBoard/>
+                <VocabularyHeader dataFromCellar={this.props.receiver}/>
+                <MainBoard valueReceivedFromCellar={this.props.receiver}/>
             </div>
         )
     }

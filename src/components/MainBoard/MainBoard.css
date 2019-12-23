@@ -78,3 +78,136 @@
     width: 100%;
     word-wrap: break-word;
 }
+
+/* Box Edition */
+.edit-word-box {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    background: #a5eda1;
+    width: 600px;
+    height: 350px;
+    border: none;
+    box-shadow: 0px 3px 6px #cec8cb;
+    z-index: 1000;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.edit-form {
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.reminder {
+    color: #ea684b;
+    font-size: 14px;
+    font-weight: bold;
+} 
+
+.edit-defination {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.edit-vocabulary label, .edit-defination label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.edit-defination textarea {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    height: 100px;
+    width: 400px;
+    padding: 5px;
+    color: gray;
+    border: none;
+    border-radius: 5px;
+}
+
+.edit-vocabulary input {
+    font-size: 14px;
+    font-weight: bold;
+    width: 400px;
+    margin: 10px;
+    padding: 5px;
+    color: gray;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Button Group */
+.edit-box-close {
+    padding: 10px;
+    background: none;
+    font-weight: bold;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin: 0 5px;
+    outline: none !important;
+}
+
+/* Delete Box */
+
+.delete-word-box {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    background: #a5eda1;
+    width: 400px;
+    height: 150px;
+    border: none;
+    box-shadow: 0px 3px 6px #cec8cb;
+    z-index: 1000;
+    border-radius: 10px;
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.delete-word-box label {
+    font-size: 14px;
+    color: gray;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.delete-word-box input {
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.delete-button {
+    background: none;
+    border: 2px solid #fff;
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.reminder-delete {
+    color: #ea684b;
+    font-size: 12px;
+    font-weight: bold;
+} 

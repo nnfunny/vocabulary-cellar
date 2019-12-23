@@ -33,11 +33,11 @@ class CellarList extends React.Component {
          
         if(cellarList === [] || cellarList === undefined) {
             dataSetKV("Cellars", [this.state.cellarName]);    
-            dataSetKV(this.state.cellarName,[]);
+            dataSetKV(this.state.cellarName,{});
         } else {
             cellarList.push(this.state.cellarName);
             dataSetKV("Cellars", cellarList);
-            dataSetKV(this.state.cellarName,[]);
+            dataSetKV(this.state.cellarName,{});
         }
         
         this.setState({ cellars: dataGet("Cellars") })
@@ -71,6 +71,18 @@ class CellarList extends React.Component {
 
     toggleBox() {
         this.setState({boxAddition: !this.state.boxAddition})
+    }
+
+    passValueToParent(cellar, e) {
+        // let nameInput = document.getElementById("input-name");
+        // nameInput.value = e.target.value
+        let cellarList = dataGet("Cellars");
+
+        if((cellarList.indexOf(cellar)> -1) && (cellar !== undefined)) {
+            this.props.valueSender(cellar);
+        } else {
+            this.props.valueSender("")
+        }
     }
 
     render() {
@@ -107,11 +119,15 @@ class CellarList extends React.Component {
                         <div></div>    
                         : 
                         this.state.cellars.map((cellar, index) => (
-                        <div key={index} value={cellar} className="cellar-item">
+                        <button 
+                            key={index} 
+                            onClick={(e) => this.passValueToParent(cellar, e)}
+                            className="cellar-item"
+                        >
                             <span>
                                 {cellar}
                             </span>
-                        </div>
+                        </button>
                     ))
                 }   
             </div>
