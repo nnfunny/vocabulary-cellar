@@ -10,14 +10,35 @@ class MainBoard extends React.Component {
     
         this.state = {
             editBox : false,
-            deleteBox: false,
+            deleteBox: true,
             word: null,
-            defination: null
+            deletedWord: null,
+            defination: null,
+            listWord: [],
+            listDefination: []
         }
 
         this.getWord = this.getWord.bind(this);
         this.getDefination = this.getDefination.bind(this);
+        this.getDeletedWord = this.getDeletedWord.bind(this);
     }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.valueReceivedFromCellar !== prevProps.valueReceivedFromCellar) {
+            let listWordUpdate = [];
+            let listDefinationUpdate = [];
+            let selectedList = dataGet(this.props.valueReceivedFromCellar);
+
+
+            for(let key in selectedList) {
+                listWordUpdate.push(key);
+                listDefinationUpdate.push(selectedList[key])
+            }
+
+            this.setState({ listWord: listWordUpdate, listDefination: listDefinationUpdate })
+        }
+    }
+
 
     getDefination(e) {
         this.setState({ defination: e.target.value })
@@ -36,7 +57,7 @@ class MainBoard extends React.Component {
     }
 
     addWord() {
-        const { word, defination } = this.state;
+        const { word, defination, listWord, listDefination } = this.state;
         let selectedCellar = this.props.valueReceivedFromCellar;
         let wordInput = document.getElementById("word-input");
         let definationInput = document.getElementById("defination-input");
@@ -52,23 +73,52 @@ class MainBoard extends React.Component {
             dataSetKV(`${selectedCellar}.${word}`, defination);
             wordInput.value = "";
             definationInput.value = "";
-        } 
+        }
+
+        if(listWord !== []) {
+            listWord.push(word);
+            listDefination.push(defination)
+            this.setState({editBox: true});
+        }
+
+    }
+
+    getDeletedWord(e) {
+        this.setState({ deletedWord: e.target.value });
+    }
+    
+    deleteWord() {
+        const { deletedWord, listWord, listDefination } = this.state;
+        let deleteWordInput = document.getElementById("delete-word-input");
+        let selectedCellar = this.props.valueReceivedFromCellar;
+        
+        // Delete in local storage
+        dataDelete(`${selectedCellar}.${deletedWord}`);
+
+        // Delete within component state
+        let indexOfWord = listWord.indexOf(deletedWord);
+        if(indexOfWord > -1) {
+            listWord.splice(indexOfWord, 1)
+            deleteWordInput.value = "";
+            this.setState({ deleteBox: true })
+        } else {
+            deleteWordInput.value = "";
+            deleteWordInput.placeholder = "Correct vocabulary, please!!!" 
+        }
     }
 
     render() {
-        const { editBox, deleteBox , word, defination } = this.state
+        const { editBox, deleteBox, listWord, listDefination } = this.state
         return(
             <div className="main-board">
-                {defination}
-                {this.props.valueReceivedFromCellar}
             {
                 deleteBox ? 
                     <div className="delete-word-box">
                          <span className="reminder-delete">Please select the cellar before you delete vocabulary</span>
                         <label for="delte-word">Please enter the vocabulary to be deleted</label>
-                        <input type="text" id="delete-word-input" />
+                        <input type="text" id="delete-word-input" onChange={this.getDeletedWord} />
                         <div className="delete-button-group">
-                            <button className="delete-button">Delete</button>
+                            <button className="delete-button" onClick={(e) => this.deleteWord(e)}>Delete</button>
                             <button className="delete-button" onClick={(e) => this.toggleDeleteBox(e)}>Close</button>
                         </div>
                     </div>        
@@ -81,6 +131,7 @@ class MainBoard extends React.Component {
                     <div className="edit-word-box">
                         <div className="edit-form">
                             <span className="reminder">Please select the cellar before you add or update vocabulary</span>
+                            <span className="reminder">Please enter the correct vocabulary (lower/uppercase) if updating it</span>
                             <div className="edit-vocabulary">
                                 <label for="vocabulary">Vocabulary</label>
                                 <input 
@@ -101,7 +152,7 @@ class MainBoard extends React.Component {
                         </div>
                         <div className="vocab-button-group">
                             <button className="edit-box-close" onClick={(e) => this.addWord(e)}>Add</button>
-                            <button className="edit-box-close" onClick={(e) => this.toggleBox(e)}>Update</button>
+                            <button className="edit-box-close" onClick={(e) => this.addWord(e)}>Update</button>
                             <button className="edit-box-close" onClick={(e) => this.toggleBox(e)}>Close</button>
                         </div>
                     </div>
@@ -115,15 +166,20 @@ class MainBoard extends React.Component {
                     <span> | </span>
                     <button className="button-custom" onClick={(e) => this.toggleDeleteBox(e)}>Delete Word</button>
                 </div>
+
                 <div className="vocabularies">
-                    <div className="vocabulary">
-                        <div className="word">
-                            <span>Shrivel</span>
+                {
+                    listWord.map((word, index) => (
+                        <div className="vocabulary"  key={index}>
+                            <div className="word">
+                                <span>{word}</span>
+                            </div>
+                            <div className="explanation">
+                               <p>{listDefination[index]}</p>  
+                            </div>
                         </div>
-                        <div className="explanation">
-                            <p>- Become or make something dry and wrinkled as a result of heat, cold or being old.</p>
-                        </div>
-                    </div>
+                    ))
+                }
                 </div>
             </div>
         )
