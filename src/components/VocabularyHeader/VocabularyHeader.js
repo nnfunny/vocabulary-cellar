@@ -14,3 +14,4 @@ class VocabularyHeader extends React.Component {
 }
 
 export default VocabularyHeader;
+

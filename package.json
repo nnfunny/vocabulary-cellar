@@ -1,5 +1,5 @@
 {
-  "name": "vocabulary-cellar",
+  "name": "Vocabulary Cellar",
   "description": "Electron app to learn English vocabularies",
   "author": "Nam Nguyen",
   "version": "0.1.0",
@@ -9,6 +9,7 @@
     "cross-env": "^6.0.3",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.9",
+    "electron-packager": "^14.1.1",
     "electron-reload": "^1.5.0",
     "electron-store": "^5.1.0",
     "react": "^16.12.0",
@@ -22,7 +23,11 @@
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron": "electron ."
+    "electron": "electron .",
+    "package-app": "electron-builder"
+  },
+  "build": {
+    "appId": "com.electron.vocabcellar"
   },
   "eslintConfig": {
     "extends": "react-app"
