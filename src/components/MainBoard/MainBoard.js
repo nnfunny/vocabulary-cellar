@@ -80,6 +80,30 @@ class MainBoard extends React.Component {
             listDefination.push(defination)
             this.setState({editBox: true});
         }
+    }
+    
+    updateWord() {
+        const { word, defination, listWord, listDefination } = this.state;
+        let selectedCellar = this.props.valueReceivedFromCellar;
+        let wordInput = document.getElementById("word-input");
+        let definationInput = document.getElementById("defination-input");
+
+        if(!word) {
+            wordInput.placeholder = "Please enter your word!!!";
+        } else if(!defination) {
+            definationInput.placeholder = "Please enter the defination!!!"; 
+        }
+
+
+        if(word && defination && selectedCellar) {    
+            dataSetKV(`${selectedCellar}.${word}`, defination);
+            wordInput.value = "";
+            definationInput.value = "";
+            
+            let indexOfUpdatedWord = listWord.indexOf(word);
+            listDefination[indexOfUpdatedWord] = defination;
+            this.setState({ editBox: true })
+        }
 
     }
 
@@ -88,7 +112,7 @@ class MainBoard extends React.Component {
     }
     
     deleteWord() {
-        const { deletedWord, listWord, listDefination } = this.state;
+        const { deletedWord, listWord } = this.state;
         let deleteWordInput = document.getElementById("delete-word-input");
         let selectedCellar = this.props.valueReceivedFromCellar;
         
@@ -152,7 +176,7 @@ class MainBoard extends React.Component {
                         </div>
                         <div className="vocab-button-group">
                             <button className="edit-box-close" onClick={(e) => this.addWord(e)}>Add</button>
-                            <button className="edit-box-close" onClick={(e) => this.addWord(e)}>Update</button>
+                            <button className="edit-box-close" onClick={(e) => this.updateWord(e)}>Update</button>
                             <button className="edit-box-close" onClick={(e) => this.toggleBox(e)}>Close</button>
                         </div>
                     </div>
