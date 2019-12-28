@@ -10,7 +10,7 @@ class MainBoard extends React.Component {
     
         this.state = {
             editBox : false,
-            deleteBox: true,
+            deleteBox: false,
             word: null,
             deletedWord: null,
             defination: null,
