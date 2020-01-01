@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "cross-env": "^6.0.3",
     "electron-is-dev": "^1.1.0",
@@ -24,10 +25,19 @@
     "react-eject": "react-scripts eject",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron": "electron .",
-    "package-app": "electron-builder"
+    "electron-build": "electron-builder",
+    "build":"npm run react-build && npm run electron-build",
+    "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js"
   },
   "build": {
-    "appId": "com.electron.vocabcellar"
+    "appId": "com.electron.vocabcellar",
+    "files": [
+        "build/**/*",
+        "node_modules/**/*"
+    ],
+    "directories": {
+        "buildResources": "assets"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,7 +56,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
-    "electron": "^7.1.2",
+    "electron": "^7.1.7",
     "electron-builder": "^21.2.0",
     "prettier": "^1.19.1",
     "wait-on": "^3.3.0"
