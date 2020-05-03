@@ -23,17 +23,17 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
-    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js"
   },
   "build": {
     "appId": "com.electron.vocabcellar",
     "files": [
-        "build/**/*",
-        "node_modules/**/*"
+      "build/**/*",
+      "node_modules/**/*"
     ],
     "directories": {
-        "buildResources": "assets"
+      "buildResources": "assets"
     }
   },
   "eslintConfig": {
