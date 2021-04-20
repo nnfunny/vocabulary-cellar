@@ -26,5 +26,6 @@
 
 The desktop app will pop up to create vocabulary lists.
 
+<!--
 ### The below image shows screenshot of my application:
-
+-->
